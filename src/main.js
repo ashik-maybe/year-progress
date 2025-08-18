@@ -5,18 +5,52 @@ document.addEventListener('DOMContentLoaded', function() {
     const percentageElement = document.getElementById('percentage');
     const currentDateElement = document.getElementById('currentDate');
 
-    // Create 52 boxes for the year progress
-    for (let i = 0; i < 52; i++) {
-        const box = document.createElement('div');
-        box.className = 'progress-box';
-        box.dataset.week = i + 1;
-        progressGrid.appendChild(box);
+    function getWeeksInYear(year) {
+        // A year has 53 weeks if it starts on Thursday, or Wednesday in a leap year
+        const jan1 = new Date(year, 0, 1);
+        const dec31 = new Date(year, 11, 31);
+        const jan1Day = jan1.getDay();
+        const dec31Day = dec31.getDay();
+
+        // Year has 53 weeks if:
+        // - Jan 1 is Thursday (4), or
+        // - Jan 1 is Wednesday (3) and it's a leap year
+        if (jan1Day === 4 || (jan1Day === 3 && isLeapYear(year))) {
+            return 53;
+        }
+        return 52;
+    }
+
+    function isLeapYear(year) {
+        return (year % 4 === 0 && year % 100 !== 0) || (year % 400 === 0);
+    }
+
+    function createProgressBoxes() {
+        const currentYear = new Date().getFullYear();
+        const weeksInYear = getWeeksInYear(currentYear);
+
+        // Clear existing boxes
+        progressGrid.innerHTML = '';
+
+        // Create boxes for the current year
+        for (let i = 0; i < weeksInYear; i++) {
+            const box = document.createElement('div');
+            box.className = 'progress-box';
+            box.dataset.week = i + 1;
+            progressGrid.appendChild(box);
+        }
     }
 
     function updateProgress() {
+        // Normalize dates to midnight to avoid timezone issues
         const now = new Date();
+        now.setHours(0, 0, 0, 0);
+
         const startOfYear = new Date(now.getFullYear(), 0, 1);
+        startOfYear.setHours(0, 0, 0, 0);
+
         const endOfYear = new Date(now.getFullYear(), 11, 31);
+        endOfYear.setHours(0, 0, 0, 0);
 
         // Calculate days passed and remaining
         const daysPassed = Math.floor((now - startOfYear) / (1000 * 60 * 60 * 24));
@@ -37,12 +71,10 @@ document.addEventListener('DOMContentLoaded', function() {
             day: 'numeric'
         });
 
-        // Calculate week information
-        const firstDayOfYear = startOfYear.getDay(); // 0 = Sunday, 1 = Monday, ..., 6 = Saturday
-        const daysSinceFirstSaturday = daysPassed + firstDayOfYear;
-        const currentWeek = Math.floor(daysSinceFirstSaturday / 7) + 1;
-        const daysInCurrentWeek = daysSinceFirstSaturday % 7 + 1;
-        const fillPercentage = (daysInCurrentWeek / 7) * 100;
+        // Calculate correct week information (week 1 starts on Jan 1)
+        const currentWeek = Math.floor(daysPassed / 7) + 1;
+        const dayInWeek = daysPassed % 7; // 0 = first day of week, 6 = last day
+        const fillPercentage = ((dayInWeek + 1) / 7) * 100;
 
         // Update progress boxes
         const boxes = document.querySelectorAll('.progress-box');
@@ -59,7 +91,8 @@ document.addEventListener('DOMContentLoaded', function() {
         });
     }
 
-    // Initial update
+    // Create boxes and initial update
+    createProgressBoxes();
     updateProgress();
 
     // Update every minute
