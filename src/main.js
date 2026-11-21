@@ -63,7 +63,7 @@ document.addEventListener('DOMContentLoaded', function() {
         endOfYear.setHours(0, 0, 0, 0);
 
         // Calculate days passed and remaining
-        const daysPassed = Math.floor((now - startOfYear) / (1000 * 60 * 60 * 24));
+        const daysPassed = Math.floor((now - startOfYear) / (1000 * 60 * 60 * 24)) + 1;
         const totalDays = Math.floor((endOfYear - startOfYear) / (1000 * 60 * 60 * 24)) + 1;
         const daysRemaining = totalDays - daysPassed;
         const percentage = Math.min(100, Math.max(0, (daysPassed / totalDays) * 100));
