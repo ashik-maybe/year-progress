@@ -102,11 +102,11 @@ h1::after {
 }
 
 .stat-label {
-    font-size: 0.8rem;
+    font-size: clamp(0.875rem, 2vw, 1rem);
     letter-spacing: 1.5px;
-    color: #707070;
+    color: #858585;
     text-transform: uppercase;
-    font-weight: 300;
+    font-weight: 400;
 }
 
 .progress-grid {
@@ -156,11 +156,11 @@ h1::after {
 
 .current-date {
     text-align: center;
-    font-size: 0.85rem;
-    color: #606060;
+    font-size: clamp(0.875rem, 2vw, 1rem);
+    color: #858585;
     letter-spacing: 1px;
     padding: clamp(15px, 4vw, 25px) 0;
-    font-weight: 300;
+    font-weight: 400;
     text-transform: uppercase;
 }
 
