@@ -91,10 +91,28 @@ document.addEventListener('DOMContentLoaded', function() {
         });
     }
 
-    // Create boxes and initial update
     createProgressBoxes();
-    updateProgress();
 
-    // Update every minute
-    setInterval(updateProgress, 60000);
+    let updateTimer;
+
+    function scheduleNextUpdate() {
+        const now = new Date();
+        const nextMidnight = new Date(now.getFullYear(), now.getMonth(), now.getDate() + 1);
+        const delay = nextMidnight - now + 1000;
+        updateTimer = window.setTimeout(() => {
+            updateProgress();
+            scheduleNextUpdate();
+        }, delay);
+    }
+
+    updateProgress();
+    scheduleNextUpdate();
+
+    document.addEventListener('visibilitychange', () => {
+        if (document.visibilityState === 'visible') {
+            window.clearTimeout(updateTimer);
+            updateProgress();
+            scheduleNextUpdate();
+        }
+    });
 });
