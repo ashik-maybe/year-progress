@@ -235,6 +235,7 @@ h1 {
     gap: clamp(4px, 1.2vw, 8px);
     max-width: min(1000px, 92vw);
     margin: 0 auto 12px;
+    animation: settle 0.8s cubic-bezier(0.25, 1.25, 0.4, 1) 0.05s backwards;
 }
 
 .progress-box {
@@ -327,8 +328,18 @@ h1 {
     margin: 0 auto 50px;
 }
 
+@keyframes settle {
+    from {
+        opacity: 0;
+        transform: scale(0.96) translateY(8px);
+    }
+}
+
 @media (prefers-reduced-motion: reduce) {
     .progress-box {
         transition: none;
+    }
+    .progress-grid {
+        animation-duration: 0.01s;
     }
 }
