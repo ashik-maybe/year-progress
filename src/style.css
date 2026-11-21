@@ -144,6 +144,14 @@ h1::after {
     line-height: 1;
 }
 
+.progress-box.filled .week-number {
+    color: #e0e0e0;
+}
+
+.progress-box.partial .week-number {
+    z-index: 1;
+}
+
 .progress-box.partial {
     position: relative;
     overflow: hidden;
