@@ -12,6 +12,49 @@ document.addEventListener('DOMContentLoaded', function() {
     const currentDateElement = document.getElementById('currentDate');
     let boxes = [];
 
+    const root = document.documentElement;
+    const themeBtn = document.getElementById('themeBtn');
+    const metaTheme = document.getElementById('metaTheme');
+
+    const storeTheme = (key, value) => {
+        try {
+            localStorage.setItem(key, value);
+        } catch {}
+    };
+    const readTheme = (key) => {
+        try {
+            return localStorage.getItem(key);
+        } catch {
+            return null;
+        }
+    };
+
+    function setTheme(theme, save) {
+        root.dataset.theme = theme;
+        if (save) storeTheme('year-theme', theme);
+        metaTheme.content = theme === 'dark' ? '#0a0b0d' : '#e4e7ec';
+        themeBtn.setAttribute('aria-pressed', String(theme === 'dark'));
+    }
+    function toggleTheme() {
+        setTheme(root.dataset.theme === 'dark' ? 'light' : 'dark', true);
+    }
+
+    setTheme(root.dataset.theme || 'light', false);
+    themeBtn.addEventListener('click', toggleTheme);
+    document.addEventListener('keydown', (event) => {
+        if (event.repeat || event.ctrlKey || event.metaKey || event.altKey) return;
+        const target = event.target;
+        const tag = target && target.tagName;
+        if (tag === 'INPUT' || tag === 'TEXTAREA' || tag === 'SELECT' || (target && target.isContentEditable)) return;
+        if (event.key === 't' || event.key === 'T') {
+            event.preventDefault();
+            toggleTheme();
+        }
+    });
+    matchMedia('(prefers-color-scheme: dark)').addEventListener('change', (event) => {
+        if (!readTheme('year-theme')) setTheme(event.matches ? 'dark' : 'light', false);
+    });
+
     function getWeeksInYear(year) {
         // A year has 53 weeks if it starts on Thursday, or Wednesday in a leap year
         const jan1 = new Date(year, 0, 1);
