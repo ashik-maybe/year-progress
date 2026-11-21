@@ -42,6 +42,7 @@ document.addEventListener('DOMContentLoaded', function() {
         for (let i = 0; i < weeksInYear; i++) {
             const box = document.createElement('div');
             box.className = 'progress-box';
+            box.setAttribute('role', 'img');
             box.dataset.week = i + 1;
             fragment.appendChild(box);
         }
@@ -95,6 +96,14 @@ document.addEventListener('DOMContentLoaded', function() {
             } else if (index === currentWeek - 1) {
                 box.classList.add('partial', 'today');
                 box.style.setProperty('--fill-height', `${fillPercentage}%`);
+            }
+
+            if (index < currentWeek - 1) {
+                box.setAttribute('aria-label', `Week ${index + 1}, complete`);
+            } else if (index === currentWeek - 1) {
+                box.setAttribute('aria-label', `Week ${index + 1}, current week, ${Math.round(fillPercentage)} percent through`);
+            } else {
+                box.setAttribute('aria-label', `Week ${index + 1}, not started`);
             }
         });
     }
