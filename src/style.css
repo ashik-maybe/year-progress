@@ -115,7 +115,7 @@ h1::after {
     grid-template-columns: repeat(auto-fit, minmax(clamp(26px, 6vw, 52px), 1fr));
     gap: clamp(4px, 1.2vw, 8px);
     max-width: min(1000px, 92vw);
-    margin: 0 auto 50px;
+    margin: 0 auto 12px;
 }
 
 .progress-box {
@@ -181,4 +181,20 @@ h1::after {
         flex-direction: column;
         gap: 25px;
     }
+}
+
+.week-number {
+    position: absolute;
+    top: 2px;
+    left: 4px;
+    font-size: clamp(8px, 1.2vw, 11px);
+    color: #8a8a8a;
+    line-height: 1;
+}
+
+.grid-caption {
+    text-align: center;
+    font-size: clamp(0.7rem, 2vw, 0.85rem);
+    color: #858585;
+    margin: 0 auto 50px;
 }
