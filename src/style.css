@@ -27,7 +27,7 @@ body {
     font-weight: 300;
     line-height: 1.6;
     min-height: 100vh;
-    padding: 40px 20px;
+    padding: clamp(20px, 5vw, 40px) clamp(12px, 4vw, 20px);
     position: relative;
 }
 
@@ -46,22 +46,22 @@ body::before {
 }
 
 .container {
-    max-width: 1000px;
+    max-width: min(1000px, 92vw);
     margin: 0 auto;
 }
 
 header {
     text-align: center;
-    margin-bottom: 50px;
+    margin-bottom: clamp(25px, 6vw, 50px);
     padding: 20px 0;
 }
 
 h1 {
     font-family: 'Cinzel', serif;
-    font-size: 2.8rem;
+    font-size: clamp(1.6rem, 6vw, 2.8rem);
     font-weight: 600;
     letter-spacing: 2px;
-    margin-bottom: 40px;
+    margin-bottom: clamp(20px, 5vw, 40px);
     color: #d0d0d0;
     text-shadow: 0 0 15px rgba(180, 180, 180, 0.1);
     position: relative;
@@ -79,7 +79,7 @@ h1::after {
 .stats {
     display: flex;
     justify-content: center;
-    gap: 60px;
+    gap: clamp(20px, 6vw, 60px);
     flex-wrap: wrap;
 }
 
@@ -89,7 +89,7 @@ h1::after {
 
 .stat-number {
     font-family: 'Cinzel', serif;
-    font-size: 2rem;
+    font-size: clamp(1.2rem, 4vw, 2rem);
     font-weight: 400;
     color: #e0e0e0;
     display: block;
@@ -99,7 +99,7 @@ h1::after {
 }
 
 .stat-label {
-    font-size: 0.8rem;
+    font-size: clamp(0.65rem, 2vw, 0.8rem);
     letter-spacing: 1.5px;
     color: #707070;
     text-transform: uppercase;
@@ -153,27 +153,12 @@ h1::after {
 
 .current-date {
     text-align: center;
-    font-size: 0.85rem;
+    font-size: clamp(0.7rem, 2vw, 0.85rem);
     color: #606060;
     letter-spacing: 1px;
-    padding: 25px 0;
+    padding: clamp(15px, 4vw, 25px) 0;
     font-weight: 300;
     text-transform: uppercase;
-}
-
-@media (max-width: 768px) {
-    h1 {
-        font-size: 2.2rem;
-        margin-bottom: 35px;
-    }
-
-    .stats {
-        gap: 35px;
-    }
-
-    .stat-number {
-        font-size: 1.6rem;
-    }
 }
 
 @media (max-width: 480px) {
@@ -181,16 +166,8 @@ h1::after {
         padding: 25px 15px;
     }
 
-    h1 {
-        font-size: 1.8rem;
-    }
-
     .stats {
         flex-direction: column;
         gap: 25px;
-    }
-
-    .stat-number {
-        font-size: 1.4rem;
     }
 }
