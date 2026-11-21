@@ -105,7 +105,7 @@ h1::after {
 .stat-label {
     font-size: clamp(0.65rem, 2vw, 0.8rem);
     letter-spacing: 1.5px;
-    color: #707070;
+    color: #858585;
     text-transform: uppercase;
     font-weight: 300;
 }
@@ -169,7 +169,7 @@ h1::after {
 .current-date {
     text-align: center;
     font-size: clamp(0.7rem, 2vw, 0.85rem);
-    color: #606060;
+    color: #858585;
     letter-spacing: 1px;
     padding: clamp(15px, 4vw, 25px) 0;
     font-weight: 300;
