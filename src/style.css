@@ -108,9 +108,9 @@ h1::after {
 
 .progress-grid {
     display: grid;
-    grid-template-columns: repeat(13, 1fr);
-    gap: 7px;
-    max-width: 850px;
+    grid-template-columns: repeat(auto-fit, minmax(clamp(26px, 6vw, 52px), 1fr));
+    gap: clamp(4px, 1.2vw, 8px);
+    max-width: min(1000px, 92vw);
     margin: 0 auto 50px;
 }
 
@@ -162,12 +162,6 @@ h1::after {
 }
 
 @media (max-width: 768px) {
-    .progress-grid {
-        grid-template-columns: repeat(10, 1fr);
-        gap: 5px;
-        max-width: 90%;
-    }
-
     h1 {
         font-size: 2.2rem;
         margin-bottom: 35px;
@@ -183,11 +177,6 @@ h1::after {
 }
 
 @media (max-width: 480px) {
-    .progress-grid {
-        grid-template-columns: repeat(7, 1fr);
-        gap: 4px;
-    }
-
     body {
         padding: 25px 15px;
     }
