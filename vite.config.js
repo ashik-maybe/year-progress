@@ -14,8 +14,8 @@ export default defineConfig({
                 start_url: '/year-progress/',
                 scope: '/year-progress/',
                 display: 'standalone',
-                background_color: '#0a0a0a',
-                theme_color: '#0a0a0a',
+                background_color: '#e4e7ec',
+                theme_color: '#e4e7ec',
                 icons: [
                     {
                         src: '/year-progress/icons/icon-192.png',
