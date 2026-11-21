@@ -160,3 +160,47 @@ h1::after {
     text-transform: uppercase;
 }
 
+@media (max-width: 768px) {
+    .progress-grid {
+        grid-template-columns: repeat(10, 1fr);
+        gap: 5px;
+        max-width: 90%;
+    }
+
+    h1 {
+        font-size: 2.2rem;
+        margin-bottom: 35px;
+    }
+
+    .stats {
+        gap: 35px;
+    }
+
+    .stat-number {
+        font-size: 1.6rem;
+    }
+}
+
+@media (max-width: 480px) {
+    .progress-grid {
+        grid-template-columns: repeat(7, 1fr);
+        gap: 4px;
+    }
+
+    body {
+        padding: 25px 15px;
+    }
+
+    h1 {
+        font-size: 1.8rem;
+    }
+
+    .stats {
+        flex-direction: column;
+        gap: 25px;
+    }
+
+    .stat-number {
+        font-size: 1.4rem;
+    }
+}
