@@ -253,3 +253,9 @@ h1::after {
         box-shadow: 0 0 12px rgba(0, 0, 0, 0.15);
     }
 }
+
+@media (prefers-reduced-motion: reduce) {
+    .progress-box {
+        transition: none;
+    }
+}
