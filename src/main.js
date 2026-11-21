@@ -46,10 +46,6 @@ document.addEventListener('DOMContentLoaded', function() {
             box.className = 'progress-box';
             box.setAttribute('role', 'img');
             box.dataset.week = i + 1;
-            const number = document.createElement('span');
-            number.className = 'week-number';
-            number.textContent = i + 1;
-            box.appendChild(number);
             fragment.appendChild(box);
         }
 
