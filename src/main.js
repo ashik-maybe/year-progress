@@ -1,3 +1,7 @@
+import { registerSW } from 'virtual:pwa-register'
+
+registerSW({ immediate: true })
+
 document.addEventListener('DOMContentLoaded', function() {
     const progressGrid = document.getElementById('progressGrid');
     const daysPassedElement = document.getElementById('daysPassed');
