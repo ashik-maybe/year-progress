@@ -4,6 +4,7 @@ document.addEventListener('DOMContentLoaded', function() {
     const daysRemainingElement = document.getElementById('daysRemaining');
     const percentageElement = document.getElementById('percentage');
     const currentDateElement = document.getElementById('currentDate');
+    let boxes = [];
 
     function getWeeksInYear(year) {
         // A year has 53 weeks if it starts on Thursday, or Wednesday in a leap year
@@ -29,16 +30,20 @@ document.addEventListener('DOMContentLoaded', function() {
         const currentYear = new Date().getFullYear();
         const weeksInYear = getWeeksInYear(currentYear);
 
-        // Clear existing boxes
         progressGrid.innerHTML = '';
+
+        const fragment = document.createDocumentFragment();
 
         // Create boxes for the current year
         for (let i = 0; i < weeksInYear; i++) {
             const box = document.createElement('div');
             box.className = 'progress-box';
             box.dataset.week = i + 1;
-            progressGrid.appendChild(box);
+            fragment.appendChild(box);
         }
+
+        progressGrid.appendChild(fragment);
+        boxes = Array.from(progressGrid.querySelectorAll('.progress-box'));
     }
 
     function updateProgress() {
@@ -77,7 +82,6 @@ document.addEventListener('DOMContentLoaded', function() {
         const fillPercentage = ((dayInWeek + 1) / 7) * 100;
 
         // Update progress boxes
-        const boxes = document.querySelectorAll('.progress-box');
         boxes.forEach((box, index) => {
             box.classList.remove('filled', 'partial', 'today');
             box.style.removeProperty('--fill-height');
