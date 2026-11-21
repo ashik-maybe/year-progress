@@ -170,3 +170,9 @@ h1::after {
         gap: 25px;
     }
 }
+
+@media (prefers-reduced-motion: reduce) {
+    .progress-box {
+        transition: none;
+    }
+}
