@@ -27,7 +27,11 @@ body {
     font-weight: 300;
     line-height: 1.6;
     min-height: 100vh;
-    padding: clamp(20px, 5vw, 40px) clamp(12px, 4vw, 20px);
+    min-height: 100dvh;
+    padding-top: max(clamp(20px, 5vw, 40px), env(safe-area-inset-top));
+    padding-right: max(clamp(12px, 4vw, 20px), env(safe-area-inset-right));
+    padding-bottom: max(clamp(20px, 5vw, 40px), env(safe-area-inset-bottom));
+    padding-left: max(clamp(12px, 4vw, 20px), env(safe-area-inset-left));
     position: relative;
 }
 
@@ -162,10 +166,6 @@ h1::after {
 }
 
 @media (max-width: 480px) {
-    body {
-        padding: 25px 15px;
-    }
-
     .stats {
         flex-direction: column;
         gap: 25px;
