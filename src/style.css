@@ -14,6 +14,41 @@
     src: url('./fonts/source-code-pro-latin.woff2') format('woff2');
 }
 
+:root {
+    --bg-hi: #f6f7f9;
+    --bg-lo: #e2e5ea;
+    --text: #17181a;
+    --muted: #71757d;
+    --bezel: #17181b;
+    --bezel-hi: rgba(255, 255, 255, 0.14);
+    --lip: #cfd3d9;
+    --dial: #fbfbfc;
+    --ink: #17181a;
+    --accent: #d92b2b;
+    --btn-bg: rgba(23, 24, 26, 0.06);
+    --btn-br: rgba(23, 24, 26, 0.5);
+    --shadow: 0 34px 70px -26px rgba(15, 17, 20, 0.5), 0 12px 28px -14px rgba(15, 17, 20, 0.28);
+    --sans: "Helvetica Neue", "Segoe UI", system-ui, -apple-system, Arial, sans-serif;
+    color-scheme: light;
+}
+
+[data-theme="dark"] {
+    --bg-hi: #17181c;
+    --bg-lo: #0a0b0d;
+    --text: #f0f1f4;
+    --muted: #8f959d;
+    --bezel: #08090b;
+    --bezel-hi: rgba(255, 255, 255, 0.09);
+    --lip: #33363b;
+    --dial: #1d1f23;
+    --ink: #f0f1f4;
+    --accent: #ff4b3a;
+    --btn-bg: rgba(255, 255, 255, 0.07);
+    --btn-br: rgba(255, 255, 255, 0.35);
+    --shadow: 0 34px 80px -26px rgba(0, 0, 0, 0.85), 0 12px 32px -14px rgba(0, 0, 0, 0.6);
+    color-scheme: dark;
+}
+
 * {
     margin: 0;
     padding: 0;
